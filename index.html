@@ -1,13 +1,43 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gentrobyte</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Quality Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span>R</span><i></i></div>
+        <div><strong>Tech Quality Management</strong><small>AI Powered ERP</small></div>
+      </div>
+      <div class="side-scroll">
+        <p class="nav-label">QUALITY OPERATIONS</p>
+        <nav id="quality-nav"></nav>
+        <p class="nav-label">INVENTORY & FLOW</p>
+        <nav id="flow-nav"></nav>
+        <p class="nav-label">MAINTENANCE</p>
+        <nav id="maintenance-nav"></nav>
+        <p class="nav-label">ACCOUNTS</p>
+        <nav id="accounts-nav"></nav>
+      </div>
+      <button class="logout" id="logout"><span>↪</span> Log out</button>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menu">☰</button>
+        <div><p class="eyebrow">QUALITY MANAGEMENT</p><h1 id="page-title">Quality Management Dashboard</h1><p id="welcome">Welcome, Quality Manager</p></div>
+        <div class="top-actions"><span class="live-dot"></span><span>Last updated: 23/08/2026, 15:02</span><button class="avatar">QM</button></div>
+      </header>
+      <div class="content" id="content"></div>
+    </main>
+  </div>
+  <div class="toast" id="toast">Report generated successfully</div>
+  <script src="app.js"></script>
+</body>
 </html>
