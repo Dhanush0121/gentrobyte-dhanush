@@ -1,3 +1,4 @@
+ .product-editor{margin-top:18px;padding:16px 18px;border-left:3px solid #159b9a;background:#eef7f7;border-radius:8px}.inline-editor{display:flex;align-items:center;gap:10px}.inline-editor strong{margin-right:auto;color:#10243e;font:600 15px 'Space Grotesk'}.inline-editor .field{width:auto;min-width:180px}@media(max-width:580px){.inline-editor{align-items:stretch;flex-direction:column}.inline-editor strong{margin:0}.inline-editor .field{width:100%}}
  .page-card:has(.search[placeholder*="products"]) .section-head .primary{display:none!important}
  .instrument-detail{margin-top:17px;padding:15px 18px;border-left:3px solid #159b9a;background:#eef7f7;color:#176e70;border-radius:7px;font-size:12px;font-weight:600}
  .instrument-success{margin-top:20px;padding:14px 16px;border-left:3px solid #159b9a;background:#eef7f7;color:#176e70;border-radius:7px;font-size:12px;font-weight:600}
