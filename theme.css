@@ -1,3 +1,4 @@
+ .page-card:has(.search[placeholder*="products"]) .section-head .primary{display:none!important}
  .instrument-detail{margin-top:17px;padding:15px 18px;border-left:3px solid #159b9a;background:#eef7f7;color:#176e70;border-radius:7px;font-size:12px;font-weight:600}
  .instrument-success{margin-top:20px;padding:14px 16px;border-left:3px solid #159b9a;background:#eef7f7;color:#176e70;border-radius:7px;font-size:12px;font-weight:600}
  .filter-button,.pending-filter-panel{display:none!important}
