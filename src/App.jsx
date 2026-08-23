@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 const initialTransactions = [
@@ -29,6 +29,10 @@ function App() {
   const [showForm, setShowForm] = useState(false)
   const [toast, setToast] = useState('')
   const [form, setForm] = useState({ customer: '', amount: '', status: 'Pending' })
+
+  useEffect(() => {
+    setActiveModule('Overview')
+  }, [])
 
   const filteredTransactions = useMemo(() => transactions.filter((item) => {
     const matchesStatus = status === 'All' || item.status === status
