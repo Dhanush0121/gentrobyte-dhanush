@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
+import { formatLiveDate, getTimeGreeting } from './time'
 
 const initialTransactions = [
   { id: 'INV-1048', customer: 'Northstar Studio', date: 'Aug 21, 2024', amount: '$4,280.00', status: 'Paid', initials: 'NS', color: 'coral' },
@@ -29,9 +30,15 @@ function App() {
   const [showForm, setShowForm] = useState(false)
   const [toast, setToast] = useState('')
   const [form, setForm] = useState({ customer: '', amount: '', status: 'Pending' })
+  const [now, setNow] = useState(new Date())
 
   useEffect(() => {
     setActiveModule('Overview')
+  }, [])
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 1000)
+    return () => window.clearInterval(timer)
   }, [])
 
   const filteredTransactions = useMemo(() => transactions.filter((item) => {
@@ -69,7 +76,7 @@ function App() {
         <div className="page-wrap">
           {activeModule !== 'Overview' && <ModuleView module={activeModule} onAction={() => notify(`${moduleDetails[activeModule].primary} opened`)} />}
           {activeModule === 'Overview' && <>
-          <section className="page-heading"><div><div className="headline-pill"><span className="pulse-dot"></span> Live operations</div><p className="eyebrow">Wednesday, August 22, 2024</p><h1>Good morning, Jordan <span>✦</span></h1><p className="subheading">Here is what is happening across your business today.</p></div><button className="primary-button" onClick={() => setShowForm(true)}><span>+</span> Add transaction</button></section>
+          <section className="page-heading"><div><div className="headline-pill"><span className="pulse-dot"></span> Live operations</div><p className="eyebrow">{formatLiveDate(now)}</p><h1>{getTimeGreeting(now)}, Jordan <span>✦</span></h1><p className="subheading">Here is what is happening across your business today.</p></div><button className="primary-button" onClick={() => setShowForm(true)}><span>+</span> Add transaction</button></section>
           <section className="metric-grid"><Metric label="Total revenue" value="$84,290" trend="+12.8%" note="vs. previous period" color="mint" chart="revenue" /><Metric label="Open invoices" value="$12,460" trend="+4.2%" note="vs. previous period" color="peach" chart="invoice" /><Metric label="Orders" value="1,284" trend="+8.7%" note="vs. previous period" color="lavender" chart="orders" /><Metric label="Inventory value" value="$248,600" trend="-2.1%" note="vs. previous period" color="yellow" chart="inventory" /></section>
           <section className="content-grid"><div className="panel revenue-panel"><div className="panel-heading"><div><h2>Revenue overview</h2><p>Track your income performance over time</p></div><select value={range} onChange={(event) => setRange(event.target.value)} aria-label="Revenue range"><option>Last 30 days</option><option>Last 90 days</option><option>This year</option></select></div><div className="chart"><div className="chart-y"><span>$40k</span><span>$30k</span><span>$20k</span><span>$10k</span><span>$0</span></div><div className="chart-area"><div className="grid-lines"><i></i><i></i><i></i><i></i><i></i></div><div className="line secondary"></div><div className="line primary"></div><div className="chart-tooltip"><strong>$32,840</strong><small>Aug 18, 2024</small></div><div className="chart-x"><span>Jul 24</span><span>Jul 31</span><span>Aug 07</span><span>Aug 14</span><span>Aug 21</span></div></div></div><div className="chart-legend"><span><i className="legend-dot indigo"></i>Revenue</span><span><i className="legend-dot pale"></i>Expenses</span></div></div><div className="panel goal-panel"><div className="panel-heading"><div><h2>Monthly goal</h2><p>Revenue target for August</p></div><button className="dots">•••</button></div><div className="goal-ring"><div><strong>72%</strong><span>achieved</span></div></div><div className="goal-amount"><strong>$84,290</strong><span>of $117,000</span></div><div className="goal-footer"><span><i className="legend-dot indigo"></i>On track</span><b>+ $32,710 to go</b></div></div></section>
           <section className="panel transactions-panel"><div className="panel-heading table-heading"><div><h2>Recent transactions</h2><p>Keep an eye on your latest business activity</p></div><button className="text-button" onClick={() => notify('Showing all transactions')}>View all <span>→</span></button></div><div className="table-tools"><div className="tabs">{['All', 'Paid', 'Pending', 'Overdue'].map((item) => <button key={item} className={status === item ? 'tab active' : 'tab'} onClick={() => setStatus(item)}>{item}{item !== 'All' && <span>{transactions.filter((transaction) => transaction.status === item).length}</span>}</button>)}</div><button className="filter-button" onClick={() => notify(`Filter set to ${range}`)}>≡ Filter</button></div><div className="table-wrap"><table><thead><tr><th>Invoice</th><th>Customer</th><th>Date</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>{filteredTransactions.map((transaction) => <tr key={transaction.id}><td><strong>{transaction.id}</strong></td><td><span className={`customer-avatar ${transaction.color}`}>{transaction.initials}</span>{transaction.customer}</td><td>{transaction.date}</td><td><strong>{transaction.amount}</strong></td><td><span className={`status ${transaction.status.toLowerCase()}`}><i></i>{transaction.status}</span></td><td><button className="row-menu" aria-label={`More options for ${transaction.id}`}>•••</button></td></tr>)}</tbody></table>{filteredTransactions.length === 0 && <div className="empty-state">No transactions match your search.</div>}</div></section>
