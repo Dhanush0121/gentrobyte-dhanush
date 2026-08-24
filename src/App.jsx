@@ -10,7 +10,7 @@ const initialTransactions = [
 ]
 
 const modules = [
-  ['Overview', '⌂'], ['Sales', '↗'], ['Purchasing', '↙'], ['Inventory', '▦'], ['Customers', '◎'], ['Reports', '▤'],
+  ['Overview', '⌂'], ['Sales', '↗'], ['Purchasing', '↙'], ['Inventory', '▦'], ['Customers', '◎'], ['Reports', '▤'], ['Check outsource to vendor', '⇄'],
 ]
 
 const moduleDetails = {
@@ -19,6 +19,7 @@ const moduleDetails = {
   Inventory: { eyebrow: 'Stock workspace', title: 'Inventory control', description: 'See what is available, what is running low, and what needs attention next.', primary: 'Add product', stats: [['Inventory value', '$248,600'], ['Low stock items', '12'], ['Warehouse units', '8,420']], rows: ['Wireless keyboard', 'Packaging set', 'Studio monitor'] },
   Customers: { eyebrow: 'Relationship workspace', title: 'Customer directory', description: 'Understand customer activity and keep your most important relationships moving.', primary: 'Add customer', stats: [['Active customers', '186'], ['New this month', '24'], ['Retention rate', '94%']], rows: ['Northstar Studio', 'Vertex Systems', 'Morrow Goods'] },
   Reports: { eyebrow: 'Insights workspace', title: 'Business reports', description: 'Turn your operational data into clear decisions with ready-to-review summaries.', primary: 'Generate report', stats: [['Reports ready', '8'], ['Data freshness', 'Live'], ['Forecast confidence', '91%']], rows: ['Revenue performance', 'Inventory valuation', 'Supplier spend'] },
+  'Check outsource to vendor': { eyebrow: 'Vendor workspace', title: 'Check outsource to vendor', description: 'Review and validate outsourced work, vendor quality checks, and on-time delivery from a single checklist.', primary: 'New vendor check', stats: [['Vendor checks', '9'], ['Pending reviews', '3'], ['Compliance score', '96%']], rows: ['Alpha Contracting', 'Prime Assembly', 'Northbridge Supply'] },
 }
 
 function App() {
